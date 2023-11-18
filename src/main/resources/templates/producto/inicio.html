@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head th:replace="layout/fragmentos :: f-head"></head>
+    <body class="sb-nav-fixed">
+        <nav th:replace="layout/fragmentos :: f-nav"></nav>
+        <div id="layoutSidenav">
+            <div th:replace="layout/fragmentos :: f-menu"></div>
+            <div id="layoutSidenav_content">
+                <main>
+                    <div class="container mt-4">
+                        <!--CONTENIDO DE LA PÁGINA PRINCIPAL (MAIN)-->
+                        <form th:action = "@{/productos/guardar}" th:object="${producto}" method="post">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5><i class="fa-solid fa-floppy-disk"></i> Registrar Productos:</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label>Categoría</label>
+                                            <select class="form-select" th:field="*{categoria.id}">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option th:each="item : ${listaCategorias}" 
+                                                        th:value="${item.id}"
+                                                        th:text="${item.nombre}"></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label for="">Nombre de Producto</label>
+                                            <input type="text" class="form-control" th:field="*{nombre}" placeholder="Escriba su nombre">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label for="">Precio de producto</label>
+                                            <input type="text" class="form-control" th:field="*{precio}" placeholder="Escriba el precio">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-center mt-3">
+                                            <button type="submit" class="btn btn-success">
+                                                <i class="fa-regular fa-floppy-disk"></i>
+                                                 Guardar Producto</button>
+                                        </div>
+                                    </div>
+                                    <!--
+                                    <div class="row">
+                                        <div class="col-md-6 mb-2">
+                                            <label for="">Nombre de Producto</label>
+                                            <input type="text" class="form-control" th:field="*{nombre}" placeholder="Escriba su nombre">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label for="">Precio de producto</label>
+                                            <input type="text" class="form-control" th:field="*{precio}" placeholder="Escriba el preico">
+                                        </div>
+                                        <div class="col-md-6 mb-2">
+                                            <label for="">Fecha de producto</label>
+                                            <input type="text" class="form-control" th:field="*{fecha}" placeholder="Selecciones una fecha">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 text-center mt-3">
+                                            <button type="submit" class="btn btn-success">
+                                                <i class="fa-regular fa-floppy-disk"></i>
+                                                 Guardar Categorias</button>
+                                        </div>
+                                    </div>
+                                    -->
+                                </div>
+                            </div>    
+                        </form>
+                    </div>
+                </main>
+                <footer th:replace="layout/fragmentos :: f-footer"></footer>
+            </div>
+        </div>
+        <div th:replace="layout/fragmentos :: f-script"></div>
+        <script th:src="@{/js/script-producto.js}"></script>
+    </body>
+</html>
